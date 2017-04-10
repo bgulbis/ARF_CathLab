@@ -13,7 +13,9 @@ raw_pts <- bind_rows(raw_pts15, raw_pts16) %>%
 
 edw_fin <- concat_encounters(raw_pts$FIN)
 
-# run EDW query: Identifiers - by FIN
+# run EDW query:
+#   * Identifiers
+#       - Formatted Financial Nbr: edw_fin
 
 ids <- read_data("data/raw", "identifiers") %>%
     as.id()
@@ -21,6 +23,7 @@ ids <- read_data("data/raw", "identifiers") %>%
 edw_pie <- concat_encounters(ids$pie.id)
 
 # run EDW queries:
+#   * Admission Type
 #   * Demographics
 #   * Diagnosis Codes (ICD-9/10-CM) - All
 #   * Labs - Renal
