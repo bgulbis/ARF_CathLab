@@ -6,9 +6,13 @@ library(edwr)
 
 dir_raw <- "data/raw"
 
+raw_admit <- read_data(dir_raw, "admit") %>%
+    as.admit()
+
 raw_demographics <- read_data(dir_raw, "demographics") %>%
     as.demographics() %>%
-    select(pie.id:race, length.stay)
+    select(pie.id:race, length.stay, disposition) %>%
+    left_join(raw_admit, by = "pie.id")
 
 raw_diagnosis <- read_data(dir_raw, "diagnosis") %>%
     as.diagnosis()
